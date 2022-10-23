@@ -1,0 +1,11 @@
+<%- include('partials/head') %> 
+
+<%- include('partials/navbar') %> 
+
+<div class="container-fluid">
+    <% dados.forEach(element => { %>
+        <%- include('partials/perguntaCard', data = element)  %> 
+    <% }) %>
+</div>
+
+<%- include('partials/footer') %> 

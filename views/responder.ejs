@@ -1,0 +1,67 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+
+<% if (exists) { %>
+    <div class="container">
+        <div class="row">
+            <div class="card p-0 col-md-10 mx-auto mt-4">
+                <div class="card-header m-0">
+                    <%= titulo %> 
+                </div>
+                <div class="card-body">
+                    <%= descricao %> 
+                </div>
+                <hr>
+                <div class="card-body">
+                    <form action='/responder' method="POST">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label" >Título da resposta</label>
+                            <input type="text" id='titulo' name="titulo" class="form-control" placeholder="Digite o título da pergunta">
+                        </div>
+                        <div class="mb-3">
+                            <label for="resposta" class="form-label">Resposta</label>
+                            <textarea id="resposta" name="resposta" cols="30" rows="4" class="form-control" placeholder="Digite a resposta"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pergunta_id" class="form-label">Respondendo à pergunta</label>
+                            <input type="hidden" name="pergunta_id" id="pergunta_id" class="form-control " value="<%= id %>">
+                        </div>
+                        <button class="btn btn-success" type="submit">Enviar Resposta</button>
+                    </form>
+                </div>
+                <% if (questao_feita) { %>
+                 
+                <% } %>
+                <hr>
+                <div class="card-body p-2">
+                    <% respostas.forEach(element => { %>
+                        <div class="card mb-2">
+                            <div class="card-header">
+                                <%= element.titulo %> 
+                            </div>
+                            <div class="card-body">
+                                <%= element.resposta %> 
+                            </div>
+                        </div>
+                    <% }) %>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+<% } else { %>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Pergunta não existe!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% } %>
+
+<%- include('partials/footer')  %>   
